@@ -5,7 +5,7 @@ import PerfectumMainTest from "./PerfectumMainTest";
 export const Perfectum = () => {
     return (
         <>
-            <Header />
+            <Header wordsLength={wordsLength} />
             <PerfectumMainTest />
             <Footer />
         </>
