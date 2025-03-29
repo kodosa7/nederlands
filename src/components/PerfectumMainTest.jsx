@@ -77,7 +77,7 @@ const words = [
     { present: "vinden", perfectum: "gevonden" },
     { present: "vliegen (h/z)", perfectum: "gevlogen" },
     { present: "voorkomen", perfectum: "voorkomen" },
-    { present: "vragen", perfectum: "gevraagd" },
+    // { present: "vragen", perfectum: "gevraagd" },
     { present: "vriezen", perfectum: "gevroren" },
     { present: "wassen", perfectum: "gewassen" },
     { present: "wegen", perfectum: "gewogen" },
