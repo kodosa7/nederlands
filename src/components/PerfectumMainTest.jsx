@@ -9,7 +9,7 @@ const words = [
     { present: "begrijpen", perfectum: "begrepen" },
     { present: "behangen", perfectum: "behangen" },
     { present: "bewegen", perfectum: "bewogen" },
-    // { present: "bezoeken", perfectum: "bezocht" },
+    { present: "bezoeken", perfectum: "bezocht" },
     { present: "bijten", perfectum: "gebeten" },
     { present: "blazen", perfectum: "geblazen" },
     { present: "blijven (zijn)", perfectum: "gebleven" },
@@ -100,18 +100,18 @@ const shuffleArray = (array) => {
 };
 
 
-export const PerfectumMainTest = () => {
+export const PerfectumMainTest = ( {wordsLength, setWordsLength} ) => {
     const [shuffledWords, setShuffledWords] = useState([]);
     const [answers, setAnswers] = useState({});
     const [results, setResults] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
     const [finished, setFinished] = useState(false);
-    const [wordsLength, setWordsLength] = useState(words.length);
+    // const [wordsLength, setWordsLength] = useState(words.length);
     
     useEffect(() => {
         setWordsLength(words.length);
         console.log(wordsLength);
-    }, []);
+    }, [words.length, setWordsLength]);
 
     useEffect(() => {
         setShuffledWords(shuffleArray([...words]));
