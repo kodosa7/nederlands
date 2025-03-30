@@ -8,11 +8,13 @@ export const Perfectum = () => {
 
     return (
         <>
-            <Header wordsLength={wordsLength} />
-            <PerfectumMainTest
-                setWordsLength={setWordsLength}
-            />
-            <Footer />
+            <div className="bg-yellow-50">
+                <Header wordsLength={wordsLength} />
+                <PerfectumMainTest
+                    setWordsLength={setWordsLength}
+                />
+                <Footer />
+            </div>
         </>
     );
 };

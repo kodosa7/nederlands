@@ -145,14 +145,14 @@ export const PerfectumMainTest = ( {wordsLength, setWordsLength} ) => {
     };
 
     return (
-        <div className="flex flex-col items-center p-4">
-            <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
+        <div className="flex flex-col items-center p-4 bg-yellow-50">
+            <div className="w-full max-w-md bg-green-50 shadow-lg rounded-lg pt-5 pl-5 pr-5 pb-2">
                 {shuffledWords.slice(0, currentIndex + 1).map((word, index) => (
                     <div key={word.present} className="mb-4 flex flex-col sm:flex-row items-center sm:justify-between">
                         <span className="text-lg font-semibold w-1/3 text-center sm:text-left">{word.present}</span>
                         <input
                             type="text"
-                            className="border p-2 rounded-md w-full sm:w-1/3 text-center"
+                            className="border p-2 rounded-md w-full sm:w-1/3 text-center bg-white"
                             value={answers[word.present] || ""}
                             onChange={(e) => handleChange(e.target.value)}
                             onKeyPress={handleKeyPress}
@@ -161,15 +161,15 @@ export const PerfectumMainTest = ( {wordsLength, setWordsLength} ) => {
                         {results[word.present] === undefined ? (
                             index === currentIndex && (
                                 <button
-                                    className="ml-0 sm:ml-4 mt-2 sm:mt-0 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                                    className="ml-0 sm:ml-1 mt-2 sm:mt-0 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                                     onClick={checkAnswer}
                                 >
                                     OK
                                 </button>
                             )
                         ) : (
-                            <span className={`ml-4 text-lg font-semibold ${results[word.present] ? "text-green-500" : "text-red-500"}`}>
-                                {results[word.present] ? "KLOPT" : "FOUT!"}
+                            <span className={`ml-4 mr-4 text-lg font-semibold ${results[word.present] ? "text-green-500" : "text-red-500"}`}>
+                                {results[word.present] ? "✅" : "❌"}
                             </span>
                         )}
                     </div>
