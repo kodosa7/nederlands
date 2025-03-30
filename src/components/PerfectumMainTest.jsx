@@ -77,7 +77,6 @@ const words = [
     { present: "vinden", perfectum: "gevonden" },
     { present: "vliegen (h/z)", perfectum: "gevlogen" },
     { present: "voorkomen", perfectum: "voorkomen" },
-    // { present: "vragen", perfectum: "gevraagd" },
     { present: "vriezen", perfectum: "gevroren" },
     { present: "wassen", perfectum: "gewassen" },
     { present: "wegen", perfectum: "gewogen" },
@@ -99,18 +98,15 @@ const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
 };
 
-
-export const PerfectumMainTest = ( {wordsLength, setWordsLength} ) => {
+export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
     const [shuffledWords, setShuffledWords] = useState([]);
     const [answers, setAnswers] = useState({});
     const [results, setResults] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
     const [finished, setFinished] = useState(false);
-    // const [wordsLength, setWordsLength] = useState(words.length);
-    
+
     useEffect(() => {
         setWordsLength(words.length);
-        console.log(wordsLength);
     }, [words.length, setWordsLength]);
 
     useEffect(() => {
@@ -129,6 +125,10 @@ export const PerfectumMainTest = ( {wordsLength, setWordsLength} ) => {
     };
 
     const handleKeyPress = (event) => {
+        if (event.key === "Enter" && (answers[shuffledWords[currentIndex].present] || "").trim() === "") {
+            event.preventDefault();
+            return;
+        }
         if (event.key === "Enter") checkAnswer();
     };
 
@@ -142,6 +142,11 @@ export const PerfectumMainTest = ( {wordsLength, setWordsLength} ) => {
         setResults({});
         setCurrentIndex(0);
         setFinished(false);
+    };
+
+    // Disable button if the input field is empty
+    const isButtonDisabled = (word) => {
+        return (answers[word.present] || "").trim() === "";
     };
 
     return (
@@ -163,6 +168,7 @@ export const PerfectumMainTest = ( {wordsLength, setWordsLength} ) => {
                                 <button
                                     className="ml-0 sm:ml-1 mt-2 sm:mt-0 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                                     onClick={checkAnswer}
+                                    disabled={isButtonDisabled(word)} // Disable button if input is empty
                                 >
                                     OK
                                 </button>
