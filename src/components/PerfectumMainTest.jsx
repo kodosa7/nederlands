@@ -183,7 +183,7 @@ export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
                 {Object.keys(results).length === shuffledWords.length && !finished && (
                     <button
                         onClick={handleFinish}
-                        className="mt-4 w-full px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                        className="mt-4 w-full px-4 py-2 mb-4 bg-green-500 text-white rounded-md hover:bg-green-600"
                     >
                         Controleer
                     </button>
@@ -204,7 +204,7 @@ export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
                         </ul>
                         <button
                             onClick={restartTest}
-                            className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+                            className="mt-4 mb-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
                         >
                             Test herhalen
                         </button>
