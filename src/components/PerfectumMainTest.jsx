@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import confetti from "canvas-confetti";
+import winnerAnim from "../assets/winner1.gif";
 
 const words = [
     { present: "aandoen", perfectum: "aangedaan" },
@@ -149,6 +151,16 @@ export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
         return (answers[word.present] || "").trim() === "";
     };
 
+    const runConfetti = () => {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: {
+                y: 0.6
+            }
+        });
+    };
+
     return (
         <div className="flex flex-col items-center p-4 bg-yellow-50">
             <div className="w-full max-w-md bg-green-50 shadow-lg rounded-lg pt-5 pl-5 pr-5 pb-2">
@@ -183,7 +195,7 @@ export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
                 {Object.keys(results).length === shuffledWords.length && !finished && (
                     <button
                         onClick={handleFinish}
-                        className="mt-4 w-full px-4 py-2 mb-4 bg-green-500 text-white rounded-md hover:bg-green-600"
+                        className="mt-4 mb-4 w-full px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
                     >
                         Controleer
                     </button>
@@ -193,6 +205,14 @@ export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
                         <h3 className="text-xl font-bold">Resultaten</h3>
                         <p className="text-green-600 font-semibold">Juist: {Object.values(results).filter(Boolean).length}</p>
                         <p className="text-red-600 font-semibold">Fout: {Object.values(results).filter((res) => !res).length}</p>
+                        {Object.values(results).filter((res) => !res).length === 0 ? (
+                            <>
+                                <h1 className="font-bold text-3xl">Goed zo!</h1>
+                                <img src={winnerAnim} width="77%"></img>
+                                {runConfetti()}
+                            </>
+                        ) : ""}
+
                         <ul className="mt-2 text-left">
                             {shuffledWords.map((word) =>
                                 results[word.present] === false ? (
