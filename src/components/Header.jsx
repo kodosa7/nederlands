@@ -7,7 +7,7 @@ const Header = ( {wordsLength} ) => {
                     </a>
                     <h2 className="text-lg text-center">Er staan {wordsLength} speciale woorden in deze test.</h2>
                     <h2 className="text-lg text-center">Vul de juiste vorm van <b>het perfectum</b> in.</h2>
-                    <h2 className="text-center">(De woordjes staan in het leerboek <i>Zo gezegd 1.2 mondeling</i> op pagina 165 en 166)</h2>
+                    <h2 className="text-center">(De woordjes staan in de leerboeken <i>Zo gezegd 2.1 schriftelijk persoonlijk</i> op pagina 147 en <i>publiek</i> op pagina 170)</h2>
             </div>
         </header>
     )
