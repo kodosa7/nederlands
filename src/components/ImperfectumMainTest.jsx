@@ -1,6 +1,6 @@
 import PerfectumMainTest from "./PerfectumMainTest";
 
-const PerfectumMainTestAlt = (props) => {
+const ImperfectumMainTest = (props) => {
     return (
         <div>
             <div className="mb-4 flex justify-center">
@@ -12,4 +12,4 @@ const PerfectumMainTestAlt = (props) => {
     );
 };
 
-export default PerfectumMainTestAlt;
+export default ImperfectumMainTest;
