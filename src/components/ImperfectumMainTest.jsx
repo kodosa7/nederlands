@@ -4,12 +4,12 @@ import winnerAnim from "../assets/winner1.gif";
 
 const words = [
     { present: "aandoen", imperfectum: "deed aan" },
-    { present: "aankomen (zijn)", imperfectum: "kwam aan" },
-    { present: "aflopen (zijn)", imperfectum: "liep af" },
+    { present: "aankomen", imperfectum: "kwam aan" },
+    { present: "aflopen", imperfectum: "liep af" },
     { present: "aanvragen", imperfectum: "vroeg aan" },
     { present: "afwassen", imperfectum: "waste af" },
     { present: "bakken", imperfectum: "bakte" },
-    { present: "beginnen (zijn)", imperfectum: "begon" },
+    { present: "beginnen", imperfectum: "begon" },
     { present: "begrijpen", imperfectum: "begreep" },
     { present: "behangen", imperfectum: "behing" },
     { present: "bewegen", imperfectum: "bewoog" },
