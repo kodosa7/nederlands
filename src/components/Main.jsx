@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import PerfectumMainTest from "./PerfectumMainTest";
 import ImperfectumMainTest from "./ImperfectumMainTest";
 
-export const Perfectum = () => {
+export const Main = () => {
     const [wordsLength, setWordsLength] = useState(0);
     const [mode, setMode] = useState(null); // 'perfectum' or 'imperfectum'
 
@@ -45,4 +45,4 @@ export const Perfectum = () => {
     );
 };
 
-export default Perfectum;
+export default Main;

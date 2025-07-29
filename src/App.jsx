@@ -1,9 +1,9 @@
-import Perfectum from "./components/Perfectum";
+import Main from "./components/Main";
 
 const App = () => {
     return (
         <div className="container">
-            <Perfectum />
+            <Main />
         </div>
     );
 };
