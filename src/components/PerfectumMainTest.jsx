@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 import winnerAnim from "../assets/winner1.gif";
 
@@ -109,12 +109,14 @@ const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
 };
 
+
 export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
     const [shuffledWords, setShuffledWords] = useState([]);
     const [answers, setAnswers] = useState({});
     const [results, setResults] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
     const [finished, setFinished] = useState(false);
+    const inputRef = useRef(null);
 
     useEffect(() => {
         setWordsLength(words.length);
@@ -123,6 +125,14 @@ export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
     useEffect(() => {
         setShuffledWords(shuffleArray([...words]));
     }, []);
+
+    // new
+    useEffect(() => {
+    if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [currentIndex]);
+
 
     const checkAnswer = () => {
         const word = shuffledWords[currentIndex];
@@ -177,6 +187,7 @@ export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
                     <div key={word.present} className="mb-4 flex flex-col sm:flex-row items-center sm:justify-between">
                         <span className="text-lg font-semibold w-1/3 text-center sm:text-left">{word.present}</span>
                         <input
+                            ref={index === currentIndex ? inputRef : null}
                             type="text"
                             className="border p-2 rounded-md w-full sm:w-1/3 text-center bg-white"
                             value={answers[word.present] || ""}
@@ -184,6 +195,7 @@ export const PerfectumMainTest = ({ wordsLength, setWordsLength }) => {
                             onKeyPress={handleKeyPress}
                             disabled={results[word.present] !== undefined}
                         />
+
                         {results[word.present] === undefined ? (
                             index === currentIndex && (
                                 <button
