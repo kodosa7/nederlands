@@ -183,6 +183,8 @@ export const ImperfectumMainTest = ({ wordsLength, setWordsLength }) => {
 
     return (
         <div className="flex flex-col items-center p-4 bg-yellow-50">
+            <h2 className="text-lg text-center">Er staan {words.length} speciale woorden in deze test.</h2>
+            <h2 className="text-lg text-center mb-10">Vul de juiste vorm van <b>het imperfectum</b> in. Klik vervolgens op OK of druk op Enter.</h2>
             <div className="w-full max-w-md bg-green-50 shadow-lg rounded-lg pt-5 pl-5 pr-5 pb-2">
                 {shuffledWords.slice(0, currentIndex + 1).map((word, index) => (
                     <div key={word.present} className="mb-4 flex flex-col sm:flex-row items-center sm:justify-between">
