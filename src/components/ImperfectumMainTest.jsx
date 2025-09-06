@@ -54,7 +54,7 @@ const words = [
     { present: "opkomen", imperfectum: "kwam op" },
     { present: "opnemen", imperfectum: "nam op" },
     { present: "opstaan", imperfectum: "stond op" },
-    { present: "opzoeken", imperfectum: "opzocht" },
+    { present: "opzoeken", imperfectum: "zocht op" },
     { present: "oversteken", imperfectum: "stak over" },
     { present: "rijden", imperfectum: "reed" },
     { present: "roepen", imperfectum: "riep" },
