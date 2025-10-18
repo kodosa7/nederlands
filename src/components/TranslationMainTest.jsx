@@ -93,7 +93,7 @@ export const TranslationMainTest = ({ setWordsLength }) => {
     return (
         <div className="flex flex-col items-center p-4 bg-yellow-50">
             <h2 className="text-lg text-center">
-                Přelož {questionCount} slovíček z češtiny do nizozemštiny.
+                Vertaal {questionCount} woorden van het Tsjechisch naar het Nederlands.
             </h2>
 
             <div className="flex items-center space-x-4 mt-4 mb-6">
