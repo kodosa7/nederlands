@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className="footer-container mt-4 pb-5 position-relative row pt-2">
             <div className="perex row pt-4">
                 <div className="d-flex justify-content-center">
-                    <h2 className="text-center">© {currentYear} ELS Design | versie 250808</h2>
+                    <h2 className="text-center">© {currentYear} ELS Design | versie 251018</h2>
                 </div>
             </div>
         </footer>

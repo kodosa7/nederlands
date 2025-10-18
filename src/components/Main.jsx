@@ -3,10 +3,11 @@ import Header from "./Header";
 import Footer from "./Footer";
 import PerfectumMainTest from "./PerfectumMainTest";
 import ImperfectumMainTest from "./ImperfectumMainTest";
+import TranslationMainTest from "./TranslationMainTest"; // ← nový import
 
 export const Main = () => {
     const [wordsLength, setWordsLength] = useState(0);
-    const [mode, setMode] = useState(null); // 'perfectum' or 'imperfectum'
+    const [mode, setMode] = useState(null); // 'perfectum', 'imperfectum', 'translation'
 
     return (
         <div className="bg-yellow-50 min-h-screen">
@@ -28,17 +29,19 @@ export const Main = () => {
                         >
                             Imperfectum
                         </button>
+                        <button
+                            className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+                            onClick={() => setMode("translation")}
+                        >
+                            Překlad (CZ → NL)
+                        </button>
                     </div>
                 </div>
             )}
 
-            {mode === "perfectum" && (
-                <PerfectumMainTest setWordsLength={setWordsLength} />
-            )}
-
-            {mode === "imperfectum" && (
-                <ImperfectumMainTest setWordsLength={setWordsLength} />
-            )}
+            {mode === "perfectum" && <PerfectumMainTest setWordsLength={setWordsLength} />}
+            {mode === "imperfectum" && <ImperfectumMainTest setWordsLength={setWordsLength} />}
+            {mode === "translation" && <TranslationMainTest setWordsLength={setWordsLength} />}
 
             <Footer />
         </div>
