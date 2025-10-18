@@ -145,7 +145,7 @@ export const TranslationMainTest = ({ setWordsLength }) => {
     return (
         <div className="flex flex-col items-center p-4 bg-yellow-50">
             <h2 className="text-lg text-center">
-                Vertaal {questionCount} woorden van het Tsjechisch naar het Nederlands. Verget niet de artikels (b.v. <b><u>het</u> huis</b>)!
+                Vertaal {questionCount} woorden van het Tsjechisch naar het Nederlands. Verget niet de artikels (b.v. <b><u>het</u> huis</b>) en zich (b.v. <b><u>zich</u> wassen</b>)!
                 Stel het aantal woorden in met de knoppen <b>+</b> en <b>-</b>.
             </h2>
 
