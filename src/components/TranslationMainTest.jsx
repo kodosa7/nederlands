@@ -93,7 +93,8 @@ export const TranslationMainTest = ({ setWordsLength }) => {
     return (
         <div className="flex flex-col items-center p-4 bg-yellow-50">
             <h2 className="text-lg text-center">
-                Vertaal {questionCount} woorden van het Tsjechisch naar het Nederlands.
+                Vertaal {questionCount} woorden van het Tsjechisch naar het Nederlands. Verget niet de artikels (b.v. <b><u>het</u> huis</b>)!
+                Stel het aantal woorden in met de knoppen <b>+</b> en <b>-</b>.
             </h2>
 
             <div className="flex items-center space-x-4 mt-4 mb-6">
@@ -162,22 +163,22 @@ export const TranslationMainTest = ({ setWordsLength }) => {
                         onClick={handleFinish}
                         className="mt-4 mb-4 w-full px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
                     >
-                        Zkontrolovat
+                        Controleer
                     </button>
                 )}
 
                 {finished && (
                     <div className="mt-6 text-center">
-                        <h3 className="text-xl font-bold">Výsledek</h3>
+                        <h3 className="text-xl font-bold">Resultaten</h3>
                         <p className="text-green-600 font-semibold">
-                            Správně: {Object.values(results).filter(Boolean).length}
+                            Juist: {Object.values(results).filter(Boolean).length}
                         </p>
                         <p className="text-red-600 font-semibold">
-                            Špatně: {Object.values(results).filter((r) => !r).length}
+                            Fout: {Object.values(results).filter((r) => !r).length}
                         </p>
                         {Object.values(results).filter((r) => !r).length === 0 && (
                             <>
-                                <h1 className="font-bold text-3xl">Perfektní!</h1>
+                                <h1 className="font-bold text-3xl">Goed zo!</h1>
                                 <img src={winnerAnim} width="77%" alt="winner" />
                                 {runConfetti()}
                             </>
@@ -197,7 +198,7 @@ export const TranslationMainTest = ({ setWordsLength }) => {
                             onClick={restartTest}
                             className="mt-4 mb-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
                         >
-                            Opakovat test
+                            Test herhalen
                         </button>
                     </div>
                 )}
