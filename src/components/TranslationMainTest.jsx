@@ -188,7 +188,7 @@ export const TranslationMainTest = ({ setWordsLength }) => {
                             {shuffledWords.slice(0, questionCount).map((word) =>
                                 results[word.cz] === false ? (
                                     <li key={word.cz} className="text-red-600">
-                                        {word.cz} – správně: <b>{word.nl}</b>
+                                        {word.cz} – juist: <b>{word.nl}</b>
                                     </li>
                                 ) : null
                             )}
