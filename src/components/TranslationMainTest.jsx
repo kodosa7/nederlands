@@ -6,7 +6,7 @@ const words = [
     { cz: "seznámit se (1. moment)", nl: "kennismaken" },
     { cz: "seznámit se (proces)", nl: "leren kennen" },
     { cz: "během (nějaké doby)", nl: "binnen" },
-    { cz: "dnes ráno", nl: "venmorgen" },
+    { cz: "dnes ráno", nl: "vanmorgen" },
     { cz: "dnes přes den", nl: "vanmiddag" },
     { cz: "dnes večer", nl: "vanavond" },
     { cz: "horší než se čekalo", nl: "tegenvallen" },
