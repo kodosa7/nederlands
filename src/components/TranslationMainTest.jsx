@@ -71,7 +71,27 @@ const words = [
     { cz: "bankrot", nl: "het failliet" },
     { cz: "veselý", nl: "monter" },
     { cz: "prospěšný", nl: "duurzaam" },
-    { cz: "takzvaný", nl: "zogenomd" }
+    { cz: "takzvaný", nl: "zogenomd" },
+    { cz: "slíbit komu", nl: "beloven van"},
+    { cz: "věřit", nl: "geloven"},
+    { cz: "důvěřovat komu", nl: "vertrouwen"},
+    { cz: "vysvětlit", nl: "uitleggen"},
+    { cz: "poskytnout informaci", nl: "aangeven"},
+    { cz: "stoupat", nl: "stijgen"},
+    { cz: "klesat", nl: "dalen"},
+    { cz: "vypadat jako", nl: "lijken op"},
+    { cz: "nejbližší", nl: "dichtsbijzijnde"},
+    { cz: "výrazný", nl: "opvallend"},
+    { cz: "ten samý (de)", nl: "dezelfde"},
+    { cz: "to samé (het)", nl: "hetzelfde"},
+    { cz: "stejně", nl: "even"},
+    { cz: "oba dva", nl: "allebei"},
+    { cz: "všichni tři", nl: "alle drie"},
+    { cz: "všichni (úplně)", nl: "allemaal"},
+    { cz: "oba", nl: "beide"},
+    { cz: "nikdo z nich", nl: "geen van beide"},
+    { cz: "smysl", nl: "de betekenis"},
+
 ];
 
 const shuffleArray = (array) => {
