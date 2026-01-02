@@ -332,7 +332,7 @@ export const TranslationMainTest = ({ setWordsLength }) => {
     const [results, setResults] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
     const [finished, setFinished] = useState(false);
-    const [questionCount, setQuestionCount] = useState(32);
+    const [questionCount, setQuestionCount] = useState(31);
     const inputRef = useRef(null);
 
     useEffect(() => {
