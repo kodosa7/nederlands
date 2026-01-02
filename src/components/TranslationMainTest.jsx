@@ -320,7 +320,6 @@ const words = [
     { cz: "nepříjemný", nl: "vervelend" },
     { cz: "zmatený", nl: "verward" },
     { cz: "kromě", nl: "behalve" },
-    { cz: "", nl: "" },
 ]
 
 const shuffleArray = (array) => {
@@ -333,7 +332,7 @@ export const TranslationMainTest = ({ setWordsLength }) => {
     const [results, setResults] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
     const [finished, setFinished] = useState(false);
-    const [questionCount, setQuestionCount] = useState(120);
+    const [questionCount, setQuestionCount] = useState(32);
     const inputRef = useRef(null);
 
     useEffect(() => {
