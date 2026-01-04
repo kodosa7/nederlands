@@ -320,6 +320,17 @@ const words = [
     { cz: "nepříjemný", nl: "vervelend" },
     { cz: "zmatený", nl: "verward" },
     { cz: "kromě", nl: "behalve" },
+    { cz: "jedovatý", nl: "giftig" },
+    { cz: "vyvolávající závrať", nl: "duizelijk" },
+    { cz: "v bezbědomí", nl: "bewusteloos" },
+    { cz: "cítit nevolnost", nl: "misselijk" },
+    { cz: "indisponovaný", nl: "onwel" },
+    { cz: "uvolněný, volný, nepevný", nl: "los" },
+    { cz: "porouchaný", nl: "slecht verkeerd" },
+    { cz: "nebezpečný", nl: "gevaarlijk" },
+    { cz: "škodlivý", nl: "schadelijk" },
+
+
 ]
 
 const shuffleArray = (array) => {
@@ -332,7 +343,7 @@ export const TranslationMainTest = ({ setWordsLength }) => {
     const [results, setResults] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
     const [finished, setFinished] = useState(false);
-    const [questionCount, setQuestionCount] = useState(31);
+    const [questionCount, setQuestionCount] = useState(41);
     const inputRef = useRef(null);
 
     useEffect(() => {
