@@ -107,7 +107,7 @@ const words = [
 ]
 
 
-/* Zamíchání pole */
+/* Fisher–Yates shuffle */
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -116,39 +116,47 @@ const shuffleArray = (array) => {
     return array;
 };
 
-/* Vybere N náhodných slov z celého seznamu */
 const pickRandomWords = (allWords, count) => {
     return shuffleArray([...allWords]).slice(0, count);
 };
 
 export const TranslationMainTest = ({ setWordsLength }) => {
+    const [questionCount, setQuestionCount] = useState(10);
+    const [started, setStarted] = useState(false);
     const [shuffledWords, setShuffledWords] = useState([]);
+
     const [answers, setAnswers] = useState({});
     const [results, setResults] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
     const [finished, setFinished] = useState(false);
-    const [questionCount, setQuestionCount] = useState(100);
 
     const inputRef = useRef(null);
 
-    /* Celkový počet slov */
     useEffect(() => {
         setWordsLength(words.length);
     }, [setWordsLength]);
 
-    /* Vylosuj nová slova při změně počtu */
     useEffect(() => {
+        if (inputRef.current) inputRef.current.focus();
+    }, [currentIndex]);
+
+    const startTest = () => {
         setShuffledWords(pickRandomWords(words, questionCount));
         setAnswers({});
         setResults({});
         setCurrentIndex(0);
         setFinished(false);
-    }, [questionCount]);
+        setStarted(true);
+    };
 
-    /* Autofocus */
-    useEffect(() => {
-        if (inputRef.current) inputRef.current.focus();
-    }, [currentIndex]);
+    const restartTest = () => {
+        setStarted(false);
+        setShuffledWords([]);
+        setAnswers({});
+        setResults({});
+        setCurrentIndex(0);
+        setFinished(false);
+    };
 
     const checkAnswer = () => {
         const word = shuffledWords[currentIndex];
@@ -179,22 +187,14 @@ export const TranslationMainTest = ({ setWordsLength }) => {
         if (event.key === "Enter") checkAnswer();
     };
 
-    const restartTest = () => {
-        setShuffledWords(pickRandomWords(words, questionCount));
-        setAnswers({});
-        setResults({});
-        setCurrentIndex(0);
-        setFinished(false);
-    };
-
     const increaseCount = () => {
-        if (questionCount < words.length) {
+        if (!started && questionCount < words.length) {
             setQuestionCount((c) => c + 1);
         }
     };
 
     const decreaseCount = () => {
-        if (questionCount > 1) {
+        if (!started && questionCount > 1) {
             setQuestionCount((c) => c - 1);
         }
     };
@@ -203,27 +203,23 @@ export const TranslationMainTest = ({ setWordsLength }) => {
         (answers[word.cz] || "").trim() === "";
 
     const runConfetti = () => {
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 },
-        });
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     };
 
     return (
         <div className="flex flex-col items-center p-4 bg-yellow-50">
             <h2 className="text-lg text-center">
-                Vertaal {questionCount} woorden van het Tsjechisch naar het
-                Nederlands. Vergeet niet de artikels en <i>zich</i>.
-                Stel het aantal woorden in met <b>+</b> en <b>-</b>.
+                Vertaal woorden van het Tsjechisch naar het Nederlands.
+                Stel eerst het aantal woorden in en druk op <b>Start</b>.
             </h2>
 
+            {/* Nastavení počtu */}
             <div className="flex items-center space-x-4 mt-4 mb-6">
                 <button
                     onClick={decreaseCount}
-                    disabled={questionCount <= 1}
+                    disabled={started || questionCount <= 1}
                     className={`px-4 py-2 rounded-md ${
-                        questionCount <= 1
+                        started || questionCount <= 1
                             ? "bg-gray-300 cursor-not-allowed"
                             : "bg-red-400 hover:bg-red-500 text-white"
                     }`}
@@ -235,9 +231,9 @@ export const TranslationMainTest = ({ setWordsLength }) => {
 
                 <button
                     onClick={increaseCount}
-                    disabled={questionCount >= words.length}
+                    disabled={started || questionCount >= words.length}
                     className={`px-4 py-2 rounded-md ${
-                        questionCount >= words.length
+                        started || questionCount >= words.length
                             ? "bg-gray-300 cursor-not-allowed"
                             : "bg-green-400 hover:bg-green-500 text-white"
                     }`}
@@ -246,117 +242,129 @@ export const TranslationMainTest = ({ setWordsLength }) => {
                 </button>
             </div>
 
-            <div className="w-full max-w-md bg-green-50 shadow-lg rounded-lg p-5">
-                {shuffledWords
-                    .slice(0, currentIndex + 1)
-                    .map((word, index) => (
-                        <div
-                            key={word.cz}
-                            className="mb-4 flex flex-col sm:flex-row items-center sm:justify-between"
-                        >
-                            <span className="text-lg font-semibold w-1/3 text-center sm:text-left">
-                                {word.cz}
-                            </span>
+            {!started && (
+                <button
+                    onClick={startTest}
+                    className="mb-6 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                >
+                    Start
+                </button>
+            )}
 
-                            <input
-                                ref={index === currentIndex ? inputRef : null}
-                                type="text"
-                                className="border p-2 rounded-md w-full sm:w-1/3 text-center bg-white"
-                                value={answers[word.cz] || ""}
-                                onChange={(e) =>
-                                    handleChange(e.target.value)
-                                }
-                                onKeyPress={handleKeyPress}
-                                disabled={results[word.cz] !== undefined}
-                            />
-
-                            {results[word.cz] === undefined ? (
-                                index === currentIndex && (
-                                    <button
-                                        className="ml-0 sm:ml-1 mt-2 sm:mt-0 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                                        onClick={checkAnswer}
-                                        disabled={isButtonDisabled(word)}
-                                    >
-                                        OK
-                                    </button>
-                                )
-                            ) : (
-                                <span
-                                    className={`ml-4 mr-4 text-lg font-semibold ${
-                                        results[word.cz]
-                                            ? "text-green-500"
-                                            : "text-red-500"
-                                    }`}
-                                >
-                                    {results[word.cz] ? "✅" : "❌"}
+            {/* TEST */}
+            {started && (
+                <div className="w-full max-w-md bg-green-50 shadow-lg rounded-lg p-5">
+                    {shuffledWords
+                        .slice(0, currentIndex + 1)
+                        .map((word, index) => (
+                            <div
+                                key={word.cz}
+                                className="mb-4 flex flex-col sm:flex-row items-center sm:justify-between"
+                            >
+                                <span className="text-lg font-semibold w-1/3">
+                                    {word.cz}
                                 </span>
-                            )}
-                        </div>
-                    ))}
 
-                {Object.keys(results).length === shuffledWords.length &&
-                    !finished && (
-                        <button
-                            onClick={() => setFinished(true)}
-                            className="mt-4 w-full px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
-                        >
-                            Controleer
-                        </button>
-                    )}
-
-                {finished && (
-                    <div className="mt-6 text-center">
-                        <h3 className="text-xl font-bold">Resultaten</h3>
-
-                        <p className="text-green-600 font-semibold">
-                            Juist:{" "}
-                            {Object.values(results).filter(Boolean).length}
-                        </p>
-                        <p className="text-red-600 font-semibold">
-                            Fout:{" "}
-                            {
-                                Object.values(results).filter((r) => !r)
-                                    .length
-                            }
-                        </p>
-
-                        {Object.values(results).every(Boolean) && (
-                            <>
-                                <h1 className="font-bold text-3xl">
-                                    Goed zo!
-                                </h1>
-                                <img
-                                    src={winnerAnim}
-                                    width="77%"
-                                    alt="winner"
+                                <input
+                                    ref={index === currentIndex ? inputRef : null}
+                                    type="text"
+                                    className="border p-2 rounded-md w-full sm:w-1/3 text-center bg-white"
+                                    value={answers[word.cz] || ""}
+                                    onChange={(e) =>
+                                        handleChange(e.target.value)
+                                    }
+                                    onKeyPress={handleKeyPress}
+                                    disabled={results[word.cz] !== undefined}
                                 />
-                                {runConfetti()}
-                            </>
+
+                                {results[word.cz] === undefined ? (
+                                    index === currentIndex && (
+                                        <button
+                                            className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                                            onClick={checkAnswer}
+                                            disabled={isButtonDisabled(word)}
+                                        >
+                                            OK
+                                        </button>
+                                    )
+                                ) : (
+                                    <span
+                                        className={`ml-4 text-lg ${
+                                            results[word.cz]
+                                                ? "text-green-500"
+                                                : "text-red-500"
+                                        }`}
+                                    >
+                                        {results[word.cz] ? "✅" : "❌"}
+                                    </span>
+                                )}
+                            </div>
+                        ))}
+
+                    {Object.keys(results).length === shuffledWords.length &&
+                        !finished && (
+                            <button
+                                onClick={() => setFinished(true)}
+                                className="mt-4 w-full px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                            >
+                                Controleer
+                            </button>
                         )}
 
-                        <ul className="mt-2 text-left">
-                            {shuffledWords.map((word) =>
-                                results[word.cz] === false ? (
-                                    <li
-                                        key={word.cz}
-                                        className="text-red-600"
-                                    >
-                                        {word.cz} – juist:{" "}
-                                        <b>{word.nl}</b>
-                                    </li>
-                                ) : null
-                            )}
-                        </ul>
+                    {finished && (
+                        <div className="mt-6 text-center">
+                            <h3 className="text-xl font-bold">Resultaten</h3>
 
-                        <button
-                            onClick={restartTest}
-                            className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
-                        >
-                            Test herhalen
-                        </button>
-                    </div>
-                )}
-            </div>
+                            <p className="text-green-600">
+                                Juist:{" "}
+                                {Object.values(results).filter(Boolean).length}
+                            </p>
+                            <p className="text-red-600">
+                                Fout:{" "}
+                                {
+                                    Object.values(results).filter((r) => !r)
+                                        .length
+                                }
+                            </p>
+
+                            {Object.values(results).every(Boolean) && (
+                                <>
+                                    <h1 className="text-3xl font-bold">
+                                        Goed zo!
+                                    </h1>
+                                    <img
+                                        src={winnerAnim}
+                                        width="77%"
+                                        alt="winner"
+                                    />
+                                    {runConfetti()}
+                                </>
+                            )}
+
+                            <ul className="mt-2 text-left">
+                                {shuffledWords.map((word) =>
+                                    results[word.cz] === false ? (
+                                        <li
+                                            key={word.cz}
+                                            className="text-red-600"
+                                        >
+                                            {word.cz} – juist:{" "}
+                                            <b>{word.nl}</b>
+                                        </li>
+                                    ) : null
+                                )}
+                            </ul>
+
+                            <button
+                                onClick={restartTest}
+                                className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+                            >
+                                Nieuw test
+                            </button>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 };
