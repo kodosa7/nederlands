@@ -103,7 +103,8 @@ const words = [
     { cz: "naléhavý, akutní", nl: "dringend"},
     { cz: "nadbytečný", nl: "overbodig"},
     { cz: "jednoduchý", nl: "eenvoudig"},
-    { cz: "nicméně", nl: "nochtans"}
+    { cz: "nicméně", nl: "nochtans"},
+    { cz: "zažít", nl: "meemaken"}
 ]
 
 
