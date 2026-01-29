@@ -1,4 +1,4 @@
-import woordenLijstFile from "onregelmatige_verba.pdf"
+import woordenLijstFile from "../assets/onregelmatige_verba.pdf"
 
 const Header = ( {wordsLength} ) => {
     return (
