@@ -307,7 +307,6 @@ const words = [
     { cz: "impozantní", nl: "indrukwekkend"},
     { cz: "velký (obrazně)", nl: "geweldig"},
     { cz: "pěkný (lidi, události..)", nl: "leuk"},
-    { cz: "příjemný", nl: "gezellig"},
     { cz: "užvat si čeho", nl: "genieten van"},
     { cz: "zatemnění", nl: "de verduistering"},
     { cz: "vzstoupat (nahoru)", nl: "beklimmen"},
