@@ -214,7 +214,7 @@ const words = [
     { cz: "cyklista", nl: "de fietser"},
     { cz: "cestovatel", nl: "de reiziger"},
     { cz: "šofér", nl: "de chauffeur"},
-    { cz: "blokátor parkování", nl: "de dubbelperkeerder"},
+    { cz: "blokátor parkování", nl: "de dubbelparkeerder"},
     { cz: "pokuta", nl: "de boete"},
     { cz: "dopravní zácpa", nl: "de file"},
     { cz: "zastávka", nl: "de halte"},
