@@ -329,7 +329,7 @@ const pickRandomWords = (allWords, count) => {
 };
 
 export const TranslationMainTest = ({ setWordsLength }) => {
-    const [questionCount, setQuestionCount] = useState(105);
+    const [questionCount, setQuestionCount] = useState(103);
     const [started, setStarted] = useState(false);
     const [shuffledWords, setShuffledWords] = useState([]);
 
