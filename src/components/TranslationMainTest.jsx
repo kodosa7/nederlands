@@ -219,7 +219,7 @@ const words = [
     { cz: "dopravní zácpa", nl: "de file"},
     { cz: "zastávka", nl: "de halte"},
     { cz: "zdvořilost", nl: "de hoffelijkheid"},
-    { cz: "kamerový dohled", nl: "de camerabeaking"},
+    { cz: "kamerový dohled", nl: "de camerabewaking"},
     { cz: "lístek na MHD", nl: "het vervoerbewijs"},
     { cz: "MHD", nl: "het openbaar vervoer"},
     { cz: "chování", nl: "het gedrag"},
